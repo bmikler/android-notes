@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +13,8 @@ public class NoteActivity extends AppCompatActivity {
 
     private RoomNoteDatabase db = RoomNoteDatabase.getDatabase(this);
     private NoteDao noteDao = db.noteDao();
-    private TextView titleView;
-    private TextView noteView;
+    private EditText titleView;
+    private EditText noteView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,20 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void createNewNote() {
+
+        titleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                titleView.getText().clear();
+            }
+        });
+
+        noteView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                noteView.getText().clear();
+            }
+        });
 
         Button createNote = findViewById(R.id.save_button);
         createNote.setOnClickListener(new View.OnClickListener() {
